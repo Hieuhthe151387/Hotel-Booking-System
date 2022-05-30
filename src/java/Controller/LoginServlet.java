@@ -43,12 +43,12 @@ public class LoginServlet extends HttpServlet {
             String login = request.getParameter("login");
 
             if (username == null && password == null) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("Login.jsp");
             } else {
                 Account account = new AccountDAO().checkLogin(username, password);
                 if (account == null) {
                     request.setAttribute("message", "Username or password is wrong");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
 
                 } else {
                     session.setAttribute("username", username);
