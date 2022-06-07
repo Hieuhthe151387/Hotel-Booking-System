@@ -155,13 +155,13 @@ public class UserDAO {
         }
     }
 
-    public void updateUserPassword(int id, String newpass) {
-        String query = "Update Users set password = ? where ID = ? ";
+    public void updateUserPassword(String email, String newpass) {
+        String query = "Update Users set password = ? where email = ? ";
         try {
             conn = new DBcontext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, newpass);
-            ps.setInt(2, id);
+            ps.setString(2, email);
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
