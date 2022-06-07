@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.AccountDAO;
-import Model.Account;
+import DAO.UserDAO;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Linh
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
+public class RegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AccountDAO ad = new AccountDAO();
+        UserDAO ud = new UserDAO();
         if (!request.getParameter("password").equals(request.getParameter("repassword"))) {
             request.setAttribute("invalid", "Repassword is not equal to password!");
             //request.setAttribute("email", request.getParameter("email"));
@@ -41,10 +41,10 @@ public class RegisterServlet extends HttpServlet {
             //request.setAttribute("password", request.getParameter("password"));
             //request.setAttribute("repassword", request.getParameter("repassword"));
             request.getRequestDispatcher("register").forward(request, response);
-        } else /*if (!request.getParameter("phone").matches("(09|01[2|6|8|9])+([0-9]{8})")) {
+        } else if (!request.getParameter("phone").matches("(09|01[2|6|8|9])+([0-9]{8})")) {
             request.setAttribute("invalid", "Phone number is invalid!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else */ if (!ad.checkEmail(request.getParameter("email"))) {
+        } else if (!ud.checkEmail(request.getParameter("email"))) {
             request.setAttribute("invalid", "This email has already existed!");
             //request.setAttribute("email", request.getParameter("email"));
             //request.setAttribute("username", request.getParameter("username"));
@@ -52,10 +52,11 @@ public class RegisterServlet extends HttpServlet {
             //request.setAttribute("repassword", request.getParameter("repassword"));
             request.getRequestDispatcher("register").forward(request, response);
         } else {
-            Account acc = new Account();
-            acc.setEmail(request.getParameter("email"));
-            acc.setPassword(request.getParameter("password"));
-            ad.createAccount(acc);
+            User u = new User();
+            u.setEmail(request.getParameter("email"));
+            u.setPassword(request.getParameter("password"));
+            
+            ud.createUser(u);
             System.out.println(request.getParameter("email"));
             System.out.println(request.getParameter("password"));
 

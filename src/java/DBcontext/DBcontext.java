@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package DBcontext;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Admin
+ * @author Linh
  */
-public class DBconnect {
+public class DBcontext {
     private final String serverName = "localhost";
     private final String dbName = "Hotel_Booking";
     private final String portNumber = "1433";
@@ -24,7 +24,7 @@ public class DBconnect {
     
     private Connection connection;
     
-    public DBconnect() {
+    public DBcontext() {
         try {
             String url = "jdbc:sqlserver://"+serverName+":"+portNumber + "\\" + instance +";databaseName="+dbName;
             if(instance == null || instance.trim().isEmpty())
@@ -32,7 +32,7 @@ public class DBconnect {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, userID, password);
         } catch (Exception ex) {
-            Logger.getLogger(DBconnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBcontext.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

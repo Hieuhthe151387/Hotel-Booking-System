@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.AccountDAO;
-import Model.Account;
+import DAO.UserDAO;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Linh
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LoginController", urlPatterns = {"/login"})
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +38,37 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
-            String username = request.getParameter("email");
+            String email = request.getParameter("email");
             String password = request.getParameter("password");
             String login = request.getParameter("login");
 
-            if (username == null && password == null) {
+            if (email == null && password == null) {
                 response.sendRedirect("Login.jsp");
             } else {
-                Account account = new AccountDAO().checkLogin(username, password);
-                if (account == null) {
-                    request.setAttribute("message", "Username or password is wrong");
+                User u = new UserDAO().checkLogin(email, password);
+                if (u == null) {
+                    request.setAttribute("message", "Email or password is wrong");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
 
                 } else {
-                    session.setAttribute("username", username);
-                    session.setAttribute("password", password);
-                    response.sendRedirect("homeAdmin.jsp");
+                    User sar = new UserDAO().checkStatusAndRole(email);
+                    if (sar.getStatus().equals("Banned")) {
+                        request.setAttribute("message", "You have Banned");
+                        request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    } else if (sar.getRole().equals("Admin")) {
+                        session.setAttribute("email", email);
+                        session.setAttribute("password", password);
+                        response.sendRedirect("homeAdmin.jsp");
+                    } else if (sar.getRole().equals("Manager")) {
+                        session.setAttribute("email", email);
+                        session.setAttribute("password", password);
+                        response.sendRedirect("homeManager.jsp");
+                    } else if (sar.getRole().equals("Customer")) {
+                        session.setAttribute("email", email);
+                        session.setAttribute("password", password);
+                        response.sendRedirect("homeCustomer.jsp");
+                    }
+
                 }
             }
 
