@@ -12,8 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import SMTP.GmailAPI;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Linh
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
-public class RegisterController extends HttpServlet {
+@WebServlet(name = "AddNewUserController", urlPatterns = {"/addnewuser"})
+public class AddNewUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,15 +37,7 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO ud = new UserDAO();
-        GmailAPI gmail = new GmailAPI();
-        if (!request.getParameter("password").equals(request.getParameter("repassword"))) {
-            request.setAttribute("invalid", "Repassword is not equal to password!");
-            //request.setAttribute("email", request.getParameter("email"));
-            //request.setAttribute("username", request.getParameter("username"));
-            //request.setAttribute("password", request.getParameter("password"));
-            //request.setAttribute("repassword", request.getParameter("repassword"));
-            request.getRequestDispatcher("register").forward(request, response);
-        } else if (!request.getParameter("phoneNumber").matches("(09|01[2|6|8|9])+([0-9]{8})")) {
+        if (!request.getParameter("phoneNumber").matches("(09|01[2|6|8|9])+([0-9]{8})")) {
             request.setAttribute("invalid", "Phone number is invalid!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else if (!ud.checkEmail(request.getParameter("email"))) {
@@ -71,24 +61,13 @@ public class RegisterController extends HttpServlet {
                 u.setAddress(request.getParameter("address"));
                 u.setAvatar(request.getParameter("avatar"));
                 u.setPhoneNumber(request.getParameter("phoneNumber"));
-                u.setPassword(request.getParameter("password"));
+                u.setPassword("");
 
                 ud.createUser(u);
                 System.out.println(request.getParameter("email"));
                 System.out.println(request.getParameter("password"));
 
-                try {
-                    String gmailFrom = "swp391.e2.g5@gmail.com";
-                    String password = "LinhLVT2509";
-                    String mailTo = request.getParameter("email");
-                    String subject = "Welcome";
-                    String message = "Hello " + request.getParameter("email") + ", you have successfully registered!";
-
-                    //send mail
-                    gmail.send(mailTo, subject, message, gmailFrom, password);
-                } catch (MessagingException ex) {
-                    Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             } catch (ParseException ex) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }

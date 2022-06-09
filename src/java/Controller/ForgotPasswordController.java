@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import DAO.UserDAO;
+import SMTP.GmailAPI;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +38,31 @@ public class ForgotPasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String password = request.getParameter("password");
-        String repassword = request.getParameter("repassword");
-        String email = (String) session.getAttribute("email");
-        
+        UserDAO ud = new UserDAO();
+        String newpass = request.getParameter("password");
+        String renewpass = request.getParameter("repassword");
+        String email = request.getParameter("email");
+        GmailAPI gmail = new GmailAPI();
+
+        if (!newpass.equals(renewpass)) {
+            request.setAttribute("invalid", "Passwords don’t match!");
+            request.getRequestDispatcher("forgotpassword").forward(request, response);
+        } else {
+            try {
+                String gmailFrom = "swp391.e2.g5@gmail.com";
+                String password = "LinhLVT2509";
+                String mailTo = request.getParameter("email");
+                String subject = "Welcome";
+                String message = "Hello " + request.getParameter("email") + ", you have successfully registered!";
+
+                //send mail
+                gmail.send(mailTo, subject, message, gmailFrom, password);
+            } catch (MessagingException ex) {
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ud.updateUserPassword(email, newpass);
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
