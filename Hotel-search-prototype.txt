@@ -1,0 +1,317 @@
+ <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            input{
+               width: 90%
+            }
+            
+            /*search box*/
+            .info-input{
+                width:80%;
+                margin: auto;
+                text-align:left;
+            }
+            input{
+                width: 100%;
+                margin-bottom: 25px;
+            }
+            
+            .title{
+                text-align: center; color: #F79B47;
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+            }
+            .extensions, .regulations{
+                font-family: Arial;
+            }
+            span{
+                font-size: 20px;
+            }
+            .service{
+                border: 1px solid;
+                margin: 0px 50px
+            }
+            .service-name{
+                margin: 10px 0px;
+            }
+            button{
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div>
+            <!--header-->
+            <div id="header" style="display: flex; justify-content: space-between; margin-bottom: 20px">
+                <!--logo-->
+                <div style="width: 10%; display: flex;align-items: center; justify-content: center">
+                    <img src="img/logo.png" alt="logo" width="100" height="50">
+                </div>
+                <!--user avatar & notification-->
+                <div style="display: flex; width:20%; justify-content: space-between">
+                    <!--notification-->
+                    <div>notification</div>
+                    <!--booking-->
+                    <div>booking</div>
+                    <!--hotels-->
+                    <div>hotels</div>
+                    <!--user avatar-->
+                    <div>user avatar</div>
+                </div>
+            </div>
+                 
+            
+            <!--navigation bar-->
+            <div id="nav" style="text-align: center;width: 99%;margin: auto; border:1px solid; border-radius: 15px; padding: 10px 0px">
+                <div style="display: flex;justify-content: space-between;width: 30%; margin: auto;">
+                    <a href="">Thông tin</a>
+                    <a href="">Phòng và giá</a>
+                    <a href="">TIện ích</a>
+                    <a href="">Xung quanh</a>
+                    <a href="">Đánh giá</a> 
+                </div>
+            </div>
+
+            
+            
+            <!--search-->     
+            <div id="search" style="display: flex; width: 100%; margin-top: 20px">
+                <!--search left-->
+                <div id="search-left" style="border-radius: 20px; width: 30%;margin-left: 10px;">
+                    <!--search box-->
+                    <div style="border: 1px solid; border-radius: 20px; padding-bottom: 50px">
+                        <div style="text-align: center; margin: 15px 0px 20px 0px">Bạn tìm kiếm</div>  
+                        <form action="" method="POST">                  
+                            <div class="info-input">
+                                Nơi đến<br/>
+                                <input type="text"/><br/>
+                            </div>
+                            <div class="info-input">
+                                Ngày nhận phòng<br/>
+                                <input type="text"/><br/>
+                            </div>
+                            <div class="info-input">
+                                Ngày trả phòng<br/>
+                                <input type="text"/><br/>
+                            </div>
+                            <div class="info-input">
+                                Chi tiết phòng<br/>
+                                <input type="text"/><br/>
+                            </div>
+                            <div class="info-input">
+                                <input type="submit" value="Tìm kiếm"/><br/>
+                            </div>
+                        </form>
+                    </div>
+                    <!--image-->
+                    <div style="border: 1px solid; border-radius: 20px; margin-top: 20px"><img src="img/logo.png" alt="logo" width="70%" height="100"></div>
+                </div>
+                <!--search right-->
+                <div id="search-right" style=" border: 1px solid; width:70%;border-radius: 20px; margin: 0px 0px 0px 30px">
+                    <!--name & rating-->
+                    <div style="display: flex; justify-content: space-between">
+                        <!--name & stars-->
+                        <div>
+                            <div>Khách sạn Grand Budapest</div>
+                            <div>stars</div>
+                        </div>
+                        <!--rating-->
+                        <div style="text-align: right">
+                            <div style="width: 50px; height: 50px; border:1px solid;">point</div>
+                            <div>number of ratings</div>
+                        </div>
+                    </div>
+                    <div>Description</div>
+                    <div>icons</div>
+                    <div style="display:flex; width:100%; justify-content: center;"><img style="border-radius: 20px; border: 1px solid;" src="img/logo.png" alt="logo" width="90%" height="200px"></div>
+                    <hr>
+                    <!--img slideshow-->
+                    <div></div>
+                    <hr>
+                </div>
+            </div>
+            
+            
+            <!--hotel info-->
+            <div style="border:1px solid; margin-top: 30px; border-radius: 30px; padding: 40px 20px">
+                <!--Our hotel-->
+                <div class="title" style="margin-bottom: 20px">Khách sạn của chúng tôi</div>
+                <div>Tọa lạc tại thành phố Hà Nội, cách Bảo tàng Dân tộc học 
+                    Việt Nam 1,7 km, VNAHOMES APARTHOTEL có dịch vụ nhận phòng/
+                    trả phòng cấp tốc, phòng nghỉ không hút thuốc, sảnh khách 
+                    chung, WiFi miễn phí trong toàn bộ khuôn viên và khu vườn. 
+                    Chỗ nghỉ này nằm trong bán kính khoảng 2,5 km từ Hồ Tây, 2,9
+                    km từ Đền Quán Thánh và 3 km từ Chùa Một Cột. Chỗ nghỉ cung 
+                    cấp dịch vụ lễ tân 24 giờ và phòng giữ hành lý cho khách.
+                    <br/>Phòng nghỉ tại VNAHOMES APARTHOTEL có máy điều hòa, bàn
+                    làm việc, ấm đun nước, lò vi sóng, tủ lạnh, két an toàn, TV 
+                    màn hình phẳng và phòng tắm riêng với vòi sen. Trong phòng 
+                    được trang bị ga trải giường và khăn tắm.
+                    <br/><br/>Khách lưu trú tại chỗ nghỉ có thể tham gia các 
+                    hoạt động trong và xung quanh thành phố Hà Nội, như đi xe 
+                    đạp.
+                    <br/><br/>VNAHOMES APARTHOTEL nằm cách Lăng Chủ tịch Hồ Chí 
+                    Minh 3 km và trung tâm thương mại Vincom Center Nguyễn Chí 
+                    Thanh 3,1 km. Sân bay gần nhất là sân bay quốc tế Nội Bài, 
+                    nằm trong bán kính 18 km từ khách sạn, và chỗ nghỉ cung cấp 
+                    dịch vụ đưa đón sân bay với một khoản phụ phí.
+                    <br/><br/><br/>Khách sạn của chúng tôi
+                    <br/><br/>Phòng view lên núi - Phục vụ 24/7 - Có xe đưa đón trong
+                    khuôn viên khách sạn
+                </div>
+                <!--Our room-->
+                <div>
+                    <div class="title">
+                        Phòng của chúng tôi
+                    </div>
+                    <hr style="border: 2px solid #F79B47;">
+                    <!--slideshow-->
+                    <div style="border: 1px solid; height: 200px"></div>
+                    <hr style="border: 2px solid #F79B47;">
+                </div>
+                <!--Our extensions-->
+                <div class="extensions">
+                    <div style="text-align: center">
+                        <!--extension header-->
+                        <div style="color: #CF6D0C; margin:20px">Các tiện ích của chúng tôi</div>
+                        <div style="margin-bottom:15px">Sự thoải mái của bạn luôn được chúng tôi đặt lên hàng 
+                            đầu -- All for your confort!</div>
+                        <!--extension list-->
+                        <div>
+                            <!--upper part-->
+                            <div style="display:flex;text-align:left; justify-content: space-evenly; margin-bottom: 20px">
+                                <div><span>An ninh</span>
+                                    <div>
+                                              • Thiết bị báo cháy
+                                         <br/>• CCTV 24/7
+                                         <br/>• Báo động an ninh
+                                         <br/>• Bảo vệ 24/7
+                                         <br/>• Két an toàn
+                                    </div>                    
+                                </div>
+                                <div>
+                                    <div><span>Đồ ăn & Đồ uống</span>
+                                            <div>
+                                                 • Nhà hàng
+                                            <br/>• Quầy mini bar
+                                        </div>                    
+                                    </div>
+                                </div>
+                                <div>
+                                    <div><span>Vị trí</span>
+                                        <div>
+                                             • Gần trung tâm
+                                             <br/>• Gần nhiều di tích, <br/>
+                                             danh lam, thắng cảnh
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!--lower part-->
+                            <div style="display:flex;width: 100%; text-align:left;justify-content: space-evenly">
+                                <div>
+                                    <div><span>Phòng</span>
+                                        <div>
+                                             • TV, Tủ lạnh
+                                        <br/>• Đồ dùng cá nhân 
+                                        <br/>• Ga trải giường
+                                        <br/>• Có ban công
+                                        </div>                    
+                                    </div>
+                                </div>
+                                <div>
+                                    <div><span>Dịch vụ</span>
+                                        <div>
+                                             • Phục vụ 24/7
+                                        <br/>• Gọi đồ 24/7
+                                        <br/>• Wifi free
+                                        <br/>• Phòng hội trường 
+                                        <br/>rộng rãi
+                                        </div>                    
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="visibility: hidden">
+                                             • Thiết bị báo cháy
+                                        <br/>• CCTV 24/7
+                                        <br/>• Báo động an ninh
+                                        <br/>• Bảo vệ 24/7
+                                        <br/>• Két an toàn
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Booking regulations-->
+                <div class="regulations">
+                    <div style="text-align: center">
+                        <!--extension header-->
+                        <div style="color: #CF6D0C; margin:50px 20px 10px 20px">Các quy đinh đặt phòng</div>
+                        <div style="margin-bottom:15px">Tất cả quy định mà chúng tôi đề ra đều nhàm mục đích bảo vệ lơi ích của khách hàng :)</div>
+                    </div>
+                    <div style="display:flex; justify-content: center; margin-top: 30px">
+                        • Những đơn đặt phòng không được đảm bảo sẽ bị huỷ vào 12h ngày hôm sau nếu khách hàng không thực hiện việc check-in.
+                        <br/>• Giờ check-in: sau 12h trưa
+                        <br/>• Không ở quá 3 người theo đơn vị phòng
+                    </div>
+                </div>
+                <!--Our services-->
+                <div style="text-align: center">
+                    <!--services-header-->
+                    <div style="color: #CF6D0C; margin:50px 20px 10px 20px">Các quy đinh đặt phòng</div>
+                    <div style="margin-bottom:15px">Danh sách các dịch vụ mà quý khách có thể chọn thêm khi đặt phòng ơr khách sạn của chúng tôi</div>
+                    <!--service list-->
+                    <div style="display:flex; justify-content: center">
+                        <div class="service">
+                            <div><img src="img/logo.png" alt="logo" width="100" height="50"></div>
+                            <div>
+                                <div class="service-name">Bể bơi 4 mùa<br/></div>
+                                <button type="button">Add</button>
+                            </div>
+                        </div>
+                        <div class="service">
+                            <div><img src="img/logo.png" alt="logo" width="100" height="50"></div>
+                            <div>
+                                <div class="service-name">Bể bơi 4 mùa<br/></div>
+                                <button type="button">Add</button>
+                            </div>
+                        </div>
+                        <div class="service">
+                            <div><img src="img/logo.png" alt="logo" width="100" height="50"></div>
+                            <div>
+                                <div class="service-name">Bể bơi 4 mùa<br/></div>
+                                <button type="button">Add</button>
+                            </div>
+                        </div>
+                        <div class="service">
+                            <div><img src="img/logo.png" alt="logo" width="100" height="50"></div>
+                            <div>
+                                <div class="service-name">Bể bơi 4 mùa<br/></div>
+                                <button type="button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <script>
+        </script>   
+    </body>
+</html>
